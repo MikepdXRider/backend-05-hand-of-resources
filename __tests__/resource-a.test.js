@@ -3,6 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 const ResourceA = require('../lib/models/Resource-a.js');
+const resourceA = require('../lib/controllers/resource-a.js');
 
 mockResourceA = {
     name: 'test-resource-a-name',
@@ -58,6 +59,20 @@ describe('backend-05-hand-of-resources resource-a routes', () => {
       ...mockResourceA,
       id,
     }
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('sends a patch by id request to resource-a and recieves an object in the correct shape', async () => {
+    const { id } = await ResourceA.insert(mockResourceA);
+
+    const patchResponse = await request(app).patch(`/api/v1/resource-a/${id}`).send({name: 'patched-test-resource-a-name'});
+
+    const actual = patchResponse.body;
+
+    const getByIdResponse = await resourceA.getById();
+
+    const expected = getByIdResponse.body;
 
     expect(actual).toEqual(expected);
   });

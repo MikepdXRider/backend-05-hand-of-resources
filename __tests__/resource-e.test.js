@@ -11,4 +11,8 @@ describe('backend-05-hand-of-resources resource-e routes', () => {
   afterAll(() => {
     pool.end();
   });
+
+  it.skip('test', () => {
+
+  });
 });

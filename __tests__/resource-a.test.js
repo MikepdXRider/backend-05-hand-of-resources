@@ -70,9 +70,7 @@ describe('backend-05-hand-of-resources resource-a routes', () => {
 
     const actual = patchResponse.body;
 
-    const getByIdResponse = await resourceA.getById();
-
-    const expected = getByIdResponse.body;
+    const expected = await ResourceA.getById(id);
 
     expect(actual).toEqual(expected);
   });

@@ -8,7 +8,7 @@ const mockResourceE = {
   company: 'test-resource-e-company',
   prefContactMethod: 'email',
   email: 'test-resource-e-contact@email.com',
-  phone: null,
+  phoneNum: null,
 }
 
 describe('backend-05-hand-of-resources resource-e routes', () => {
@@ -23,6 +23,12 @@ describe('backend-05-hand-of-resources resource-e routes', () => {
   it('sends a post request to resource-a and recieves an object in the correct shape', async () => {
     const postResponse = await request(app).post('/api/v1/resource-e/').send(mockResourceE);
     const actual = postResponse.body;
-    expect(actual).toEqual(mockResourceE);
+
+    const expected = {
+      ...mockResourceE,
+      id: expect.any(String)
+    }
+
+    expect(actual).toEqual(expected);
   });
 });

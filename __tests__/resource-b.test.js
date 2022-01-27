@@ -33,7 +33,7 @@ describe('backend-05-hand-of-resources resource-b routes', () => {
   });
 
   it('sends a get request to resource-b and recieves an array of objects in the correct shape', async () => {
-    ResourceB.insert(mockResourceB);
+    await ResourceB.insert(mockResourceB);
     
     const response = await request(app).get('/api/v1/resource-b/');
 
@@ -48,7 +48,7 @@ describe('backend-05-hand-of-resources resource-b routes', () => {
   });
 
   it('sends a get by id request to resource-b and recieves an object in the correct shape', async () => {
-    const { id } = ResourceB.insert(mockResourceB);
+    const { id } = await ResourceB.insert(mockResourceB);
     
     const response = await request(app).get(`/api/v1/resource-b/${id}`);
 

@@ -61,4 +61,16 @@ describe('backend-05-hand-of-resources resource-b routes', () => {
 
     expect(actual).toEqual(expected);
   });
+
+  it('sends a patch by id request to resource-b and recieves an object in the correct shape', async () => {
+    const { id } = await ResourceB.insert(mockResourceB);
+
+    await request(app).patch(`/api/v1/resource-b/${id}`).send({ inStock: false })
+
+    const actual = await ResourceB.getById(id);
+
+    const expected = { ...mockResourceB, id, inStock: false };
+
+    expect(actual).toEqual(expected);
+  });
 });

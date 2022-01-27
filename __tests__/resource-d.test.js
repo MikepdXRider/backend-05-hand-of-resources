@@ -19,8 +19,8 @@ describe('backend-05-hand-of-resources resource-e routes', () => {
   });
 
   it('sends a post request to resource-d and recieves an object in the correct shape', async () => {
-    const postResponse = await request(app).post('/api/v1/resource_d/').send(mockResourceD);
-    actual = postResponse.body;
+    const postResponse = await request(app).post('/api/v1/resource-d/').send(mockResourceD);
+    const actual = postResponse.body;
 
     const expected = {
       ...mockResourceD,

@@ -84,8 +84,7 @@ describe('backend-05-hand-of-resources resource-a routes', () => {
     
     expect(expected).toEqual(actual);
 
-    const getByIdResponse = await ResourceA.getById(id);
-    expect(getByIdResponse).rejects.toThrow();
+    expect(async () => await ResourceA.getById(id)).rejects.toThrow();
   });
 
 });

@@ -6,7 +6,7 @@ const app = require('../lib/app');
 mockResourceB = {
   name: 'test-resource-b-name',
   description: 'test-resource-b-description',
-  in_stock: true,
+  inStock: true,
 }
 
 describe('backend-05-hand-of-resources resource-b routes', () => {
@@ -24,7 +24,7 @@ describe('backend-05-hand-of-resources resource-b routes', () => {
     const actual = response.body;
 
     const expected = {
-      ...mockResourceA,
+      ...mockResourceB,
       id: expect.any(String),
     };
 

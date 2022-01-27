@@ -40,5 +40,5 @@ CREATE TABLE resource_e (
     company TEXT NOT NULL,
     pref_contact_method TEXT NOT NULL,
     email TEXT,
-    phone_num INT
+    phone_num BIGINT
 );

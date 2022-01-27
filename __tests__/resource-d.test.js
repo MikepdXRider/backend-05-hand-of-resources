@@ -74,4 +74,19 @@ describe('backend-05-hand-of-resources resource-e routes', () => {
     expect(actual).toEqual(expected);
     expect(await ResourceD.getById(id)).toEqual(expected);
   });
+
+  it('sends a delete by id request to resource-d, getById throws error', async () => {
+    const { id } = await ResourceD.insert(mockResourceD);
+
+    const deleteResponse = await request(app).delete(`/api/v1/resource-d/${id}`);
+    const actual = deleteResponse.body;
+
+    const expected = {
+      ...mockResourceD,
+      id,
+    };
+
+    expect(actual).toEqual(expected);
+    expect(async () => await ResourceD.getById(id)).rejects.toThrow();
+  });
 });

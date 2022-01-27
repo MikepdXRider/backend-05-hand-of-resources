@@ -70,7 +70,7 @@ describe('backend-05-hand-of-resources resource-c routes', () => {
     const expected = {
       ...mockResourceC,
       id,
-      isResolve: true,
+      isResolved: true,
       timeOfError: expect.any(String)
     };
     

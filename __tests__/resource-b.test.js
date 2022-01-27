@@ -6,7 +6,7 @@ const app = require('../lib/app');
 mockResourceB = {
   name: 'test-resource-b-name',
   description: 'test-resource-b-description',
-  quantity: 1000000,
+  in_stock: true,
 }
 
 describe('backend-05-hand-of-resources resource-b routes', () => {

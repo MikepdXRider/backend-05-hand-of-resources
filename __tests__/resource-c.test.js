@@ -26,7 +26,7 @@ describe('backend-05-hand-of-resources resource-c routes', () => {
       ...mockResourceC,
       id: expect.any(String),
       timeOfError: expect.any(String)
-    }
+    };
     
     expect(actual).toEqual(expected);
   });
@@ -41,7 +41,7 @@ describe('backend-05-hand-of-resources resource-c routes', () => {
       ...mockResourceC,
       id: expect.any(String),
       timeOfError: expect.any(String)
-    }]
+    }];
     
     expect(actual).toEqual(expected);
   });
@@ -49,14 +49,14 @@ describe('backend-05-hand-of-resources resource-c routes', () => {
   it('sends a get by id request to resource-c and recieves an object in the correct shape', async () => {
     const { id } = await ResourceC.insert(mockResourceC);
 
-    const getResponse = await request(app).get(`/api/v1/resource-c/${id}`)
+    const getResponse = await request(app).get(`/api/v1/resource-c/${id}`);
     const actual = getResponse.body;
 
-    const expected = [{
+    const expected = {
       ...mockResourceC,
       id,
       timeOfError: expect.any(String)
-    }]
+    };
     
     expect(actual).toEqual(expected);
   });

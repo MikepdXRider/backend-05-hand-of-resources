@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS resource_a;
 DROP TABLE IF EXISTS resource_b;
 DROP TABLE IF EXISTS resource_c;
 DROP TABLE IF EXISTS resource_d;
+DROP TABLE IF EXISTS resource_e;
 
 CREATE TABLE resource_a (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -31,4 +32,13 @@ CREATE TABLE resource_d (
     name TEXT NOT NULL,
     description TEXT NOT NULL,
     contract_value INT NOT NULL
+);
+
+CREATE TABLE resource_e (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    contact_name TEXT NOT NULL,
+    company TEXT NOT NULL,
+    pref_contact_method TEXT NOT NULL,
+    email TEXT,
+    phone INT
 );

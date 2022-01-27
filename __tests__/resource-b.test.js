@@ -2,6 +2,7 @@ const pool = require('../lib/utils//pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const ResourceB = require('../lib/models/Resource-b.js');
 
 mockResourceB = {
   name: 'test-resource-b-name',
@@ -32,6 +33,8 @@ describe('backend-05-hand-of-resources resource-b routes', () => {
   });
 
   it('sends a get request to resource-b and recieves an array of objects in the correct shape', async () => {
+    ResourceB.insert(mockResourceB);
+    
     const response = await request(app).get('/api/v1/resource-b/');
 
     const actual = response.body;

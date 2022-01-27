@@ -49,12 +49,28 @@ describe('backend-05-hand-of-resources resource-c routes', () => {
   it('sends a get by id request to resource-c and recieves an object in the correct shape', async () => {
     const { id } = await ResourceC.insert(mockResourceC);
 
-    const getResponse = await request(app).get(`/api/v1/resource-c/${id}`);
-    const actual = getResponse.body;
+    const getByIdResponse = await request(app).get(`/api/v1/resource-c/${id}`);
+    const actual = getByIdResponse.body;
 
     const expected = {
       ...mockResourceC,
       id,
+      timeOfError: expect.any(String)
+    };
+    
+    expect(actual).toEqual(expected);
+  });
+
+  it('sends a update by id request to resource-c and recieves an object in the correct shape', async () => {
+    const { id } = await ResourceC.insert(mockResourceC);
+
+    const updateByIdResponse = await request(app).patch(`/api/v1/resource-c/${id}`).send({isResolved: true});
+    const actual = updateByIdResponse.body;
+
+    const expected = {
+      ...mockResourceC,
+      id,
+      isResolve: true,
       timeOfError: expect.any(String)
     };
     

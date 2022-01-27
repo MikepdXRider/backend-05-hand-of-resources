@@ -58,4 +58,20 @@ describe('backend-05-hand-of-resources resource-e routes', () => {
 
     expect(actual).toEqual(expected);
   });
+
+  it('sends a update by id request to resource-d and recieves an object in the correct shape', async () => {
+    const { id } = await ResourceD.insert(mockResourceD);
+
+    const getAllResponse = await request(app).patch(`/api/v1/resource-d/${id}`).send({ contractValue: 7000 });
+    const actual = getAllResponse.body;
+
+    const expected = {
+      ...mockResourceD,
+      id,
+      contractValue: 7000
+    };
+
+    expect(actual).toEqual(expected);
+    expect(await ResourceD.getById(id)).toEqual(expected);
+  });
 });

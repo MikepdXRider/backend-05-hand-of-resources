@@ -86,5 +86,4 @@ describe('backend-05-hand-of-resources resource-a routes', () => {
 
     expect(async () => await ResourceA.getById(id)).rejects.toThrow();
   });
-
 });

@@ -20,7 +20,13 @@ describe('backend-05-hand-of-resources resource-c routes', () => {
   it('sends a post request to resource-c and recieves an object in the correct shape', async () => {
     const insertResponse = await request(app).post('/api/v1/resource-c/').send(mockResourceC);
     const actual = insertResponse.body;
+
+    expected = {
+      ...mockResourceC,
+      id: expect.any(String),
+      timeOfError: expect.any(String)
+    }
     
-    expect(actual).toEqual(mockResourceC);
+    expect(actual).toEqual(expected);
   });
 });

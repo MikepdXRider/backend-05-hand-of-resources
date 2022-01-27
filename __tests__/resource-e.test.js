@@ -60,4 +60,22 @@ describe('backend-05-hand-of-resources resource-e routes', () => {
 
     expect(actual).toEqual(expected);
   });
+
+  it('sends a update by id request to resource-a and recieves an object in the correct shape', async () => {
+    const { id } = await ResourceE.insert(mockResourceE);
+
+    const updateResponse = await request(app).patch(`/api/v1/resource-e/${id}`).send({email: null, phone: 5033339999, prefContactMethod: 'phone'});
+    const actual = updateResponse.body;
+   
+    const expected = {
+      ...mockResourceE,
+      id,
+      email: null,
+      phone: 5033339999,
+      prefContactMethod: 'phone'
+    };
+
+    expect(actual).toEqual(expected);
+    expect(await ResourceE.getById(id)).toEqual(expected);
+  });
 });

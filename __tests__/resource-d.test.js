@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const ResourceD = require('../lib/models/Resource-d.js');
 
 const mockResourceD = {
   name: 'test-resource-d-name',
@@ -26,6 +27,20 @@ describe('backend-05-hand-of-resources resource-e routes', () => {
       ...mockResourceD,
       id: expect.any(String)
     };
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('sends a get by all request to resource-d and recieves an array of objects in the correct shape', async () => {
+    await ResourceD.insert(mockResourceD);
+
+    const getAllResponse = await request(app).get('/api/v1/resource-d/');
+    const actual = getAllResponse.body;
+
+    const expected = [{
+      ...mockResourceD,
+      id: expect.any(String)
+    }];
 
     expect(actual).toEqual(expected);
   });

@@ -46,4 +46,19 @@ describe('backend-05-hand-of-resources resource-b routes', () => {
 
     expect(actual).toEqual(expected);
   });
+
+  it('sends a get by id request to resource-b and recieves an object in the correct shape', async () => {
+    const { id } = ResourceB.insert(mockResourceB);
+    
+    const response = await request(app).get(`/api/v1/resource-b/${id}`);
+
+    const actual = response.body;
+
+    const expected = {
+      ...mockResourceB,
+      id: expect.any(String)
+    };
+
+    expect(actual).toEqual(expected);
+  });
 });
